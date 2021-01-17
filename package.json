@@ -4,7 +4,9 @@
   "description": "Typescript based API template",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "ts-node-dev --respawn --pretty --transpile-only src/index.ts | bunyan",
+    "build": "tsc -p .",
+    "start": "mkdir -p ./logs/ && node ./dist/index.js | bunyan"
   },
   "repository": {
     "type": "git",
