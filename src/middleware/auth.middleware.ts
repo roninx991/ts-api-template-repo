@@ -30,6 +30,8 @@ export const jwtAuth = () => {
         Logger.error("Token has expired!");
         return done(new Error("TokenExpired"), null);
       } else {
+        user.last_accessed = new Date();
+        user.save();
         Logger.info("User authentication successful!");
         return done(null, user);
       }

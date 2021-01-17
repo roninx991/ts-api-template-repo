@@ -5,7 +5,6 @@ import * as dotenv from "dotenv";
 import { CallbackError } from "mongoose";
 
 /** Required App Modules */
-import User from "../models/user";
 import Logger from "../config/logger";
 
 dotenv.config();
