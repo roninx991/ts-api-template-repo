@@ -21,7 +21,7 @@ var params = {
 export const jwtAuth = () => {
   let strategy = new JWTStrategy(params, function (payload, done) {
     Logger.debug("JWT Authentication using payload: ", payload);
-    User.findById(payload.id, function (err: CallbackError, user: any | null) {
+    User.findOne({ username: payload.username }, function (err: CallbackError, user: any | null) {
       if (err) {
         Logger.error("User not found!");
         Logger.error(err);
