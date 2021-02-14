@@ -18,9 +18,12 @@ var params = {
   jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
 };
 
-export const jwtAuth = () => {
+export const jwtAuth = (username: String) => {
   let strategy = new JWTStrategy(params, function (payload, done) {
     Logger.debug("JWT Authentication using payload: ", payload);
+    if (username !== payload.username) {
+      done(new Error("InvalidTokenForUser"), null);
+    }
     User.findOne({ username: payload.username }, function (err: CallbackError, user: any | null) {
       if (err) {
         Logger.error("User not found!");
